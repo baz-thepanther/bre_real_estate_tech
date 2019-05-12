@@ -1,0 +1,81 @@
+#Aim is to use Zillow API's to retrieve information about properties and neighborhoods from the Zillow website.
+
+
+
+#Import xml Tree for scrapping web data
+
+import xml.etree.cElementTree as ET
+import requests 
+import pandas as pd
+from lxml import html
+from lxml import etree
+
+
+#To understand neigborhood around certain state and city
+#Use pull requests to get data
+r = requests.get('http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=<"Insert Zillow ID">&state=wa&city=seattle&childtype=neighborhood')
+
+#Print out web based content
+r.content
+
+
+
+#Organizing the data
+
+tree = html.fromstring(roc.content)
+regions = tree.xpath('.//region')
+
+
+data = regions
+
+group_big = []
+    
+for row_elements in data: # iterate over rows
+    group = {'zip': 0,
+        'loc': '',
+        'price': 0,
+        'url': '',
+        'lat': 0,
+        'long': 0}
+    
+    print(row_elements.text_content())
+    print()
+
+    #row = []
+    for col_element in row_elements: # iterate over columns
+        #print(col_element)
+        
+        if col_element.tag == 'id':
+            #print(col_element.tag)
+            group['zip']= col_element.text_content()
+        
+        elif col_element.tag == 'name':
+    #print(col_element.tag)
+            group['loc']= col_element.text_content()
+    
+        elif col_element.tag == 'url':
+            group['url']= col_element.text_content()
+            
+        
+        elif col_element.tag == 'zindex':
+            #print(col_element.tag)
+            group['price est']= col_element.text_content()
+        
+        elif col_element.tag == 'latitude':
+            #print(col_element.tag)
+            group['lat']= col_element.text_content()
+            
+            
+        elif col_element.tag == 'longitude':
+            #print(col_element.tag)
+            group['long']= col_element.text_content()
+            
+        
+    
+    group_big.append(group)
+
+    #Print out organized dataframe of properties selected on web.
+    df = pd.DataFrame([group])
+
+    
+    
