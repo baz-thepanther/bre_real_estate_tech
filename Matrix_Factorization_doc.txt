@@ -1,0 +1,17 @@
+Machine Learning for Recommendation Systems 
+
+The future of machine learning lies in unsupervised learning. 
+
+Matrix Factorization(MF) presents a new opportunity for model based collaborative filtering. 
+
+MF aims to learn latent preferences of users and latent attributes of items from known ratings then predict unknown ratings throught dot product of latent features of users & tems
+
+MF can restructre the user-item matrix into low rank strucutre in case of very sparse matrices. 
+
+Singular value decomposition (SVD) is a well known matrix factorization method. 
+SVD decomposes matrix A into best lower rank (simpler) approximation of original matrix A. 
+
+- Involves analysis of how much users like a particular feature and how relevant the feature is to the recommedations. 
+
+For more information:
+https://medium.com/@james_aka_yale/the-4-recommendation-engines-that-can-predict-your-movie-tastes-bbec857b8223
