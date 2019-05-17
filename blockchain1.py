@@ -1,3 +1,6 @@
+#Inspired from:
+#https://freestartupkits.com/articles/technology/cryptocurrency-news-and-tips/how-to-build-a-blockchain-application-python/
+
 import hashlib
 import json
 from time import time
